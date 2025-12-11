@@ -39,6 +39,7 @@
   text-transform: uppercase;
   font-weight: 400;
   inline-size: var(--content-width);
+  max-block-size: 368px;
 }
 
 .header__title {
@@ -69,6 +70,7 @@
 
 .card__title {
   font-weight: var(--title-font-weight);
+  font-variation-settings: "wght" var(--title-font-weight);
   font-size: 18px;
   padding: 4px 10px;
   align-self: flex-start; 
@@ -81,6 +83,7 @@
   object-position: center;
   border: 2px solid var(--border-color);
   display: block;
+  
 }
 
 .card__image-wrapper {
@@ -117,6 +120,7 @@
 
 .card__text {
   font-weight: var(--main-font-weight);
+  font-variation-settings: "wght" var(--main-font-weight);
   font-size: 18px;
   margin: 25px;
 }
@@ -139,34 +143,47 @@
   justify-content: flex-end;
   align-items: center;
   border: none;
+  transition: transform 0.3s ease; 
+}
+
+.button {
+  display: flex;
+  border: 2px solid var(--border-color);
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  inline-size: fit-content;
+  position: relative;
+  overflow: hidden; 
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  transform: translateZ(0); 
 }
 
 .card__like-button {
-  background-color: transparent;
-  border: 2px solid var(--border-color);
-  justify-content: flex-end;
-  align-items: center;
-  padding: 12px 37px;
+  padding: 12px 0;
+  min-width: 130px;
+}
+
+.card__save-button {
+  background-color: white;
+  margin: 52px auto 0;
+  padding: 20.5px 20px;
+  gap: 8px;
+}
+
+.card__save-icon {
+  position: relative;
+  z-index: 2;
+  fill: var(--text-color, #000000);
+  transition: fill 0.3s ease;
 }
 
 .button__text {
   font-family: var(--accent-font-family);
   font-weight: 400;
   font-size: 14px;
-}
-
-.card__save-button {
-  display: flex;
-  background-color: white;
-  border: 2px solid var(--border-color);
-  align-items: center;
-  justify-content: center;
-  margin-top: 52px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 20.5px 20px;
-  gap: 8px;
-  inline-size: fit-content;
+  color: var(--text-color, #000000); 
 }
 
 .dialog:not([open]) {
@@ -202,17 +219,16 @@
   font-size: 14px;
   max-inline-size: 234px;
   line-height: 150%;
+  text-transform: uppercase;
+}
+
+.dialog__button {
+  width: 100%;
+  padding: 12.5px 132.5px;
 }
 
 .dialog__button-text {
   line-height: 90%;
-}
-
-.dialog__button {
-  background-color: transparent;
-  border: 2px solid var(--border-color);
-  width: 100%;
-  padding: 12.5px 132.5px;
 }
 
 @media (width < 376px){
@@ -232,6 +248,12 @@
 
   .dialog__text {
     max-inline-size: 234px;
+  }
+
+  .dialog__content-text svg {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0; 
   }
 }
 
@@ -263,26 +285,12 @@
   filter: brightness(200%) sepia(70%);
 }
 
-.card__like-button:focus,
-.card__save-button:focus,
-.dialog__button:focus {
+.button:focus {
   outline: none;
   box-shadow: 2px 2px 0 0 var(--border-color);
-  transition: box-shadow 0.3s ease;
 }
 
-.card__like-button,
-.card__save-button,
-.dialog__button {
-  position: relative;
-  overflow: hidden; 
-  cursor: pointer;
-  transition: color 0.3s ease; 
-}
-
-.card__like-button::before,
-.card__save-button::before,
-.dialog__button::before {
+.button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -294,26 +302,25 @@
   transform-origin: left center;
   transition: transform 0.5s ease-in-out;
   z-index: 1;
+  box-sizing: border-box;
 }
 
-.card__like-button:hover::before,
-.card__save-button:hover::before,
-.dialog__button:hover::before {
+.button:hover::before {
   transform: scaleX(1);
 }
 
-.card__like-button .button__text,
-.card__save-button .button__text,
-.dialog__button .button__text {
+.button .button__text {
   position: relative;
   z-index: 2;
-  color: white;
-  mix-blend-mode: difference;
+  color: var(--text-color, #000000); 
   transition: color 0.3s ease;
 }
 
+.button:hover .button__text {
+  color: var(--background-color, #ffffff); 
+}
+
 .card__icon-button:focus-visible {
-  transition: transform 0.3s ease;
   border: 2px solid var(--border-color);
   outline: none;
 }
@@ -384,7 +391,3 @@
 .like-icon.is-liked .sparks {
   animation: sparks-flash 0.3s 0.3s ease-in;
 }
-
-
-
-
