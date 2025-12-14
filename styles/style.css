@@ -35,7 +35,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem) clamp(1.5rem, 1.3462rem + 0.6576vw, 2rem);
+  padding: clamp(7.5rem, 7.1479rem + 1.5023vw, 8rem) clamp(1.5rem, 1.3462rem + 0.6576vw, 2rem);
   text-transform: uppercase;
   font-weight: 400;
   inline-size: var(--content-width);
@@ -82,16 +82,18 @@
   object-position: center;
   border: 2px solid var(--border-color);
   display: block;
-  aspect-ratio: 1 / 1; /* Сохраняем квадратное соотношение */
-  height: 696px; /* Фиксированная высота */
-  width: 696px;
+  aspect-ratio: 1 / 1;
+  height: auto; 
+  max-height: 696px;
 }
 
 .card__image-wrapper {
   position: relative;
   overflow: hidden;
-  width: 696px; /* Фиксированная ширина */
-  height: 696px;
+  width: var(--content-width);
+  height: auto; 
+  aspect-ratio: 1 / 1;
+  max-height: 696px;
 }
 
 .card__image-label {
@@ -138,7 +140,7 @@
   margin-bottom: 27px;
   margin-right: 25px;
   gap: 5px;
-  margin-left: 25px; /* Добавляем отступ слева для симметрии */ 
+  margin-left: 25px;
   width: calc(100% - 50px); 
 }
 
@@ -170,8 +172,8 @@
   min-width: 130px;
   width: 130px; 
   display: flex;
-  justify-content: center; /* Добавь это */
-  align-items: center; /* Добавь это */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .save_content {
@@ -278,13 +280,15 @@
   }
 
   .card__image {
-    height: 371px;
-    width: 371px; 
+    height: auto;
+    max-height: 371px;
+    width: 100%;
   }
 
   .card__image-wrapper {
-    width: 371px;
-    height: 371px;
+    height: auto;
+    max-height: 371px;
+    width: 100%;
   }
 }
 
